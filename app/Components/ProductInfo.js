@@ -6,30 +6,36 @@ const ProductInfo = ({ product, onClose }) => {
   }
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-10 bg-black bg-opacity-50">
-      <div className="bg-white p-6 w-96 rounded-lg shadow-lg overflow-y-auto max-h-96">
-        <h2 className="text-xl font-semibold mb-4">{product.title}</h2>
-        <div className="mb-4">
-          <img
-            src={product.image}
-            alt={product.title}
-            className="w-full h-64 object-cover"
-          />
+    <div className="fixed inset-0 z-10 overflow-y-auto bg-black bg-opacity-50 flex items-center justify-center">
+      <div className="bg-white w-11/12 max-w-3xl rounded-lg p-6 shadow-xl">
+        <div className="flex justify-between items-center">
+          <h2 className="text-2xl font-semibold mb-4">{product.title}</h2>
+          <button
+            onClick={onClose}
+            className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-full transition focus:outline-none"
+          >
+            Close
+          </button>
         </div>
-        <p className="text-gray-500 mb-2">
-          Price:{' '}
-          {typeof product.price === 'number'
-            ? `$${product.price.toFixed(2)}`
-            : 'Price not available'}
-        </p>
-        <p className="text-gray-500 mb-2">Category: {product.category}</p>
-        <p className="text-gray-500 mb-2">Description: {product.description}</p>
-        <button
-          onClick={onClose}
-          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 hover:text-white transition"
-        >
-          Close
-        </button>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <img
+              src={product.image}
+              alt={product.title}
+              className="w-full h-auto object-contain"
+            />
+          </div>
+          <div>
+            <p className="text-gray-500 mb-2">
+              Price:{' '}
+              {typeof product.price === 'number'
+                ? `$${product.price.toFixed(2)}`
+                : 'Price not available'}
+            </p>
+            <p className="text-gray-500 mb-2">Category: {product.category}</p>
+            <p className="text-gray-500 mb-2">Description: {product.description}</p>
+          </div>
+        </div>
       </div>
     </div>
   );
